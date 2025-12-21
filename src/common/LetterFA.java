@@ -21,6 +21,9 @@ public class LetterFA
    StringBuilder walksetCPn = new StringBuilder(Letter.a.pattern);
 
    private int counterA;
+   private int counterB;
+   private int counterC;
+   private int counterD;
 
    public void step()
    {
@@ -40,6 +43,9 @@ public class LetterFA
       }
 
       counterA = 0;
+      counterB = 0;
+      counterC = 0;
+      counterD = 0;
 
       String copyCPn = walksetCPn.toString();
       int start = offset;
@@ -62,15 +68,15 @@ public class LetterFA
       }
       else if (Letter.b.pattern.equals(letter))
       {
-
+         counterB++;
       }
       else if (Letter.c.pattern.equals(letter))
       {
-
+         counterC++;
       }
       else if (Letter.d.pattern.equals(letter))
       {
-
+         counterD++;
       }
       else
       {
@@ -122,6 +128,21 @@ public class LetterFA
    public int getCounterA()
    {
       return counterA;
+   }
+
+   public int getCounterB()
+   {
+      return counterB;
+   }
+
+   public int getCounterC()
+   {
+      return counterC;
+   }
+
+   public int getCounterD()
+   {
+      return counterD;
    }
 
    public int getWalksetBn()

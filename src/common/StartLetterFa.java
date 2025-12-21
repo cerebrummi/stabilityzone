@@ -16,7 +16,7 @@ public class StartLetterFa
 {
    private final static int NUMBER_OF_STEPS = 250000;
 
-   private static HashMap<Integer, Integer> counter = new HashMap<>();
+   private static HashMap<Integer,Integer[]> counter = new HashMap<>();
 
    public static void main(String[] args)
    {
@@ -26,8 +26,11 @@ public class StartLetterFa
       {
          letterFA.step();
          
-         counter.put( (i + 1),
-               letterFA.getCounterA());
+         counter.put( (i + 1),new Integer[] {
+               letterFA.getCounterA(),
+               letterFA.getCounterB(),
+               letterFA.getCounterC(),
+               letterFA.getCounterD()});
       }
 
       ArrayList<Integer> keys = new ArrayList<>(counter.keySet());
@@ -53,20 +56,21 @@ public class StartLetterFa
 
       
       
-      File file = new File("stabilityzone_lettera_250000.csv");
+      File file = new File("stabilityzone_lettersABCD_250000.csv");
       
       try(FileOutputStream stream = new FileOutputStream(file);
             OutputStreamWriter writer = new OutputStreamWriter(stream,
                   StandardCharsets.UTF_8);)
       {
          StringJoiner joiner = new StringJoiner("\n");
-
-         int a = 0;
+         joiner.add("n\ta\tb\tc\td");
+         
+         Integer[] content;
          for (Integer key : keys)
          {
-            a = counter.get(key);
+            content = counter.get(key);
 
-            joiner.add(key + "\t"+ a);
+            joiner.add(key + "\t"+ content[0]+ "\t"+ content[1]+ "\t"+content[2]+ "\t"+content[3]);
 
          }
 
