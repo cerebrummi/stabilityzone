@@ -10,7 +10,7 @@ import enums.Letter;
  */
 public class LetterFA
 {
-   private static final int _19 = 19;
+   private static final int UNTIL_19 = 19;
    /**
     * 4 is the step where letter a has formed.
     */
@@ -25,7 +25,7 @@ public class LetterFA
    private int counterC;
    private int counterD;
 
-   public void step()
+   public void step() throws Exception
    {
       walksetBn++;
 
@@ -35,7 +35,7 @@ public class LetterFA
 
       if ("L".equalsIgnoreCase(walksetBPn.toString()))
       {
-         if (walksetBn < _19)
+         if (walksetBn < UNTIL_19)
          {
             fractalProcessCopy();
          }
@@ -60,7 +60,7 @@ public class LetterFA
       }
    }
 
-   public void matchLetter(String letter)
+   public void matchLetter(String letter) throws Exception
    {
       if (Letter.a.pattern.equals(letter))
       {
@@ -81,7 +81,7 @@ public class LetterFA
       else
       {
          System.err.println("invalid letter " + letter + " n = " + walksetBn);
-         System.exit(1);
+         throw new Exception("letters invalid");
       }
    }
 
@@ -113,7 +113,7 @@ public class LetterFA
    {
       String firstSymbol = walksetCPn.substring(0, 1);
       walksetCPn.deleteCharAt(0);
-      if (walksetBn < _19)
+      if (walksetBn < UNTIL_19)
       {
          walksetCPn.append(firstSymbol);
       }

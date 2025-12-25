@@ -15,28 +15,37 @@ import java.util.StringJoiner;
 public class StartLetterFa
 {
    private final static int NUMBER_OF_STEPS = 250000;
-
    private static HashMap<Integer,Integer[]> counter = new HashMap<>();
-
+   LetterFA letterFA = new LetterFA();
+   
    public static void main(String[] args)
    {
-      LetterFA letterFA = new LetterFA();
-
-      for (int i = letterFA.getWalksetBn(); i < NUMBER_OF_STEPS; i++)
+      StartLetterFa program = new StartLetterFa();
+      try 
       {
-         letterFA.step();
-         
-         counter.put( (i + 1),new Integer[] {
-               letterFA.getCounterA(),
-               letterFA.getCounterB(),
-               letterFA.getCounterC(),
-               letterFA.getCounterD()});
+          program.run();
+      }
+      catch (Exception e) 
+      {
+         e.printStackTrace();
+      }
+   }
+   
+   public void run() throws Exception {
+      for (int i = 1 + letterFA.getWalksetBn(); i <= NUMBER_OF_STEPS; i++) {
+          letterFA.step();
+          counter.put(i, new Integer[] {
+              letterFA.getCounterA(),
+              letterFA.getCounterB(),
+              letterFA.getCounterC(),
+              letterFA.getCounterD(),
+          });
       }
 
       ArrayList<Integer> keys = new ArrayList<>(counter.keySet());
       handleCounter(keys);
-
-   }
+  }
+   
 
    public static void handleCounter(ArrayList<Integer> keys)
    {
